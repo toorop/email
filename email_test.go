@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-
 	"github.com/stretchr/testify/require"
 )
 
@@ -68,4 +67,16 @@ func TestGetRawBody(t *testing.T) {
 	require.NoError(t, err)
 	bodyStr := string(body[:len(body)-1])
 	assert.Equal(t, "The Best Play!", bodyStr)
+}
+
+func TestGetDomains(t *testing.T) {
+	var err error
+	reader := getMailReader("html.txt")
+	defer reader.Close()
+	email := New()
+	defer email.Close()
+	require.NoError(t, email.ReadMessage(reader))
+	domains, err := email.GetDomains()
+	require.NoError(t, err)
+	log.Println(domains)
 }
