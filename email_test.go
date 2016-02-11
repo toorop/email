@@ -71,6 +71,12 @@ func TestGetRawBody(t *testing.T) {
 
 func TestGetDomains(t *testing.T) {
 	var err error
+	expectedDomains := map[string]int{
+		"protecmail.com": 5,
+		"tedmailing1.fr": 1,
+		"bacori1.fr":     8,
+		"majuscul1.fr":   1,
+	}
 	reader := getMailReader("html.txt")
 	defer reader.Close()
 	email := New()
@@ -78,5 +84,15 @@ func TestGetDomains(t *testing.T) {
 	require.NoError(t, email.ReadMessage(reader))
 	domains, err := email.GetDomains()
 	require.NoError(t, err)
-	log.Println(domains)
+	//log.Println(domains)
+	for d, o := range expectedDomains {
+		_, found := domains[d]
+		require.True(t, found)
+		assert.Equal(t, o, domains[d])
+	}
+	for d, o := range domains {
+		_, found := expectedDomains[d]
+		require.True(t, found)
+		assert.Equal(t, o, expectedDomains[d])
+	}
 }
