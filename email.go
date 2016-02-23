@@ -1,9 +1,14 @@
 package email
 
 import (
+	"bufio"
+	"bytes"
 	"io"
 	"io/ioutil"
+	"mime"
+	"mime/multipart"
 	"net"
+	"net/textproto"
 	"os"
 	"strings"
 	"sync"
@@ -13,9 +18,12 @@ import (
 
 // Email represents an email
 type email struct {
-	locker  *sync.Mutex
-	file    *os.File
-	TempDir string
+	locker           *sync.Mutex
+	file             *os.File
+	TempDir          string
+	Header           Header
+	flagHeaderParsed bool
+	contentType      string
 }
 
 // New returns a new email
@@ -95,6 +103,50 @@ func (m *email) GetRawheaders() ([]byte, error) {
 	return headers[:len(headers)-1], nil
 }
 
+// parseHeader parse headers
+func (m *email) parseHeader() (err error) {
+	m.locker.Lock()
+	defer m.locker.Unlock()
+
+	if _, err = m.file.Seek(0, 0); err != nil {
+		return err
+	}
+
+	tp := textproto.NewReader(bufio.NewReader(m.file))
+	hdr, err := tp.ReadMIMEHeader()
+	if err != nil {
+		return err
+	}
+	m.Header = Header(hdr)
+	m.flagHeaderParsed = true
+	return nil
+}
+
+// GetHeaders returns valueS for header key key
+func (m *email) GetHeaders(key string) (headers []string, err error) {
+	// if not parsed
+	if !m.flagHeaderParsed {
+		if err = m.parseHeader(); err != nil {
+			return headers, err
+		}
+	}
+	headers, _ = m.Header[textproto.CanonicalMIMEHeaderKey(key)]
+	return
+}
+
+// GetHeader returns first value for header key key
+func (m *email) GetHeader(key string) (string, error) {
+	var err error
+	var hs []string
+	if hs, err = m.GetHeaders(key); err != nil {
+		return "", err
+	}
+	if len(hs) == 0 {
+		return "", err
+	}
+	return hs[0], nil
+}
+
 // GetRawBody returns body as []byte
 func (m *email) GetRawBody() (body []byte, err error) {
 	m.locker.Lock()
@@ -117,6 +169,56 @@ func (m *email) GetRawBody() (body []byte, err error) {
 	}
 	body, err = ioutil.ReadAll(m.file)
 	return
+}
+
+// GetContentType returns content-type of the message
+func (m *email) GetContentType() (contentType string, params map[string]string, err error) {
+	/*if m.contentType != "" {
+		return m.contentType, nil
+	}*/
+	hdrCt, err := m.GetHeader("Content-Type")
+	if err != nil {
+		return
+	}
+	return mime.ParseMediaType(hdrCt)
+	/*if err != nil {
+		m.contentType = contentType
+	}
+	return*/
+}
+
+// GetPayloads returns
+func (m *email) GetPayloads() error {
+	contentType, params, err := m.GetContentType()
+	if err != nil {
+		return err
+	}
+	println(contentType)
+	for k, v := range params {
+		println(k, v)
+	}
+	if strings.HasPrefix(contentType, "multipart") {
+		body, err := m.GetRawBody()
+		if err != nil {
+			return err
+		}
+		mr := multipart.NewReader(bytes.NewReader(body), params["boundary"])
+		for {
+			part, err := mr.NextPart()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				return err
+			}
+			payload, err := ioutil.ReadAll(part)
+			if err != nil {
+				return err
+			}
+			println(string(payload))
+		}
+	}
+	return nil
 }
 
 // GetDomains returns un slice of domains names found in email src

@@ -55,6 +55,42 @@ func TestGetRawHeaders(t *testing.T) {
 
 }
 
+func TestGetHeaders(t *testing.T) {
+	reader := getMailReader("test-headers.txt")
+	defer reader.Close()
+	email := New()
+	defer email.Close()
+	require.NoError(t, email.ReadMessage(reader))
+	hdr, err := email.GetHeaders("x-test-multi")
+	require.NoError(t, err)
+	assert.Equal(t, []string{"a", "a"}, hdr)
+	h, err := email.GetHeader("x-test-multi")
+	require.NoError(t, err)
+	assert.Equal(t, h, "a")
+}
+
+// TestGetContentType
+func TestGetContentType(t *testing.T) {
+	reader := getMailReader("multipart-text-html.txt")
+	defer reader.Close()
+	email := New()
+	defer email.Close()
+	require.NoError(t, email.ReadMessage(reader))
+	contentType, _, err := email.GetContentType()
+	assert.NoError(t, err)
+	assert.Equal(t, "multipart/related", contentType)
+}
+
+func TestGetPayloads(t *testing.T) {
+	reader := getMailReader("base64.eml")
+	defer reader.Close()
+	email := New()
+	defer email.Close()
+	require.NoError(t, email.ReadMessage(reader))
+	err := email.GetPayloads()
+	require.NoError(t, err)
+}
+
 // TestGetBody test GetBody
 func TestGetRawBody(t *testing.T) {
 	var err error

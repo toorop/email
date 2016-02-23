@@ -1,0 +1,414 @@
+Return-Path: <international@emarsys.net>
+Delivered-To: toorop.fr-toorop@toorop.fr
+Received: (qmail 1392 invoked from network); 22 Feb 2016 07:16:49 -0000
+Received: from 71.mxout.protecmail.com (HELO 7.mxout.protecmail.com) (212.83.131.135)
+  by mail.protecmail.com with ESMTPS (AES128-SHA encrypted); 22 Feb 2016 07:16:49 -0000
+Received: tmail deliverd remote 230360f9e133d46b24a1b00d56c525c987194faf; 22 Feb 2016 08:16:49 +0100
+X-Env-From: international@emarsys.net
+Received: from 91.121.228.128 (4.mxout.protecmail.com.)
+   (4.mxout.protecmail.com) by 62.210.162.212 (7.mxout.protecmail.com.) with ESMTPS TLS 1.2
+   TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256; tmail 0.13;
+   141a627300858fbccbfada2685336a6b7238d6be; 22 Feb 2016 08:16:48 +0100
+Received: (qmail 4840 invoked from network); 22 Feb 2016 07:16:48 -0000
+Received: from 31.mxf.protecmail.com (178.33.223.41)
+  by 4.mxout.protecmail.com with SMTP; 22 Feb 2016 07:16:48 -0000
+Received: (qmail 3529 invoked from network); 22 Feb 2016 07:16:48 -0000
+Received: from pmta40164.emarsys.net (91.211.240.164) 
+	 by 31.mxf.protecmail.com (PM MXF); 22 Feb 2016 07:16:48 -0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=key2;
+ d=deals.banggood.com; 
+ h=To:Subject:From:MIME-Version:List-Id:List-Unsubscribe:Content-Type:Message-ID:Date;
+ i=newsletter@deals.banggood.com; 
+ bh=9BGjxxEi/DmpSDVhQyZyA0R++Y0=;
+ b=I3VAhyKkfArCeydPTFYkeY6xQAnGulKYS0ADCEUE9Kry3Slx0glEr2eMTDh/HLf4vGfe3tPBm038
+ dtkB9fNmGRxa92RGgixriQAwlyU4j6jp2I+0r39VWcuibI0QjZl8HjXGEEt2trw2abTrHOYR151q
+ uiPNnUtnq4YOpv6RYw0=
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=key2; d=deals.banggood.com; 
+ b=ZNKHps5dheNWeKdcVuilVOkCfEcRckPE4o71k0LJ8OaSMEtb/ZEiiDjw2sls7uN/0/LmV+dpd3XA
+ MzTMkg6tYZQFewHIDDAbIP5t3fck0eGZY5hiJtGtd7rWVNxTpJ6Kvn889y1S4zGjrXnbieQt1Ydr
+ 2JuuVs7RkNhyU0p74+Y=;
+Received: from (10.200.201.34) by pmta40164.emarsys.net id hpaqtu16nd8e for
+ <toorop@toorop.fr>;
+ Mon, 22 Feb 2016 08:16:38 +0100 (envelope-from <international@emarsys.net>)
+To: toorop@toorop.fr
+X-Mailer: class SMTPMail
+From: "Banggood.com" <newsletter@deals.banggood.com>
+MIME-Version: 1.0
+List-Id: 143476290 <Banggood.com>
+X-EMarSys-Identify: 143476290_1722780_235443
+X-EMarSys-Environment: international
+X-Report-Abuse: Please report abuse here: abuse-report@emarsys.com
+X-CSA-Complaints: whitelist-complaints@eco.de
+List-Unsubscribe: <mailto:list-unsubscribe+143476290_1722780_235443_1VAgTap2oi@emarsys.net>,
+ <https://list-unsubscribe.eservice.emarsys.net/api/unsubscribe/143476290_1722780_235443_1VAgTap2oi>
+Content-Type: multipart/alternative; boundary="--=_---NextPart--=_-i9bKqw4YaE"
+Message-ID: <0.0.8F.E50.1D16D40F84A6C98.0@pmta40164.emarsys.net>
+Date: Mon, 22 Feb 2016 08:16:38 +0100
+X-PM-R: U1BBTTpC
+X-QB-UUID: 59bc65efec494bde8d2cd4f9da160f78
+Subject: Up to 52% Off on Spring Fashion! Fantastic Chic Items From
+ $1.99.
+X-PM-Scan: SPAM
+
+
+----=_---NextPart--=_-i9bKqw4YaE
+Content-Type: text/plain; charset=utf-8
+Content-transfer-encoding: quoted-printable
+
+To ensure proper delivery of special offers to your inbox (not bulk or
+junk folders), please add newsletter@deals.banggood.com to your address
+book. Trouble viewing this email? Click here:
+http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_46&d=3DT=
+WFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3Njc0MjY%=
+3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C
+
+Dear Friend,
+
+We emailed to you because you have ordered from our company before, and
+this is to let you be informed of our new arrivals and discounts. You
+can visit our site for more discounts: www.banggood.com.=20
+
+Banggood.com is one of the most professional online wholesaler in China.
+We supply various kinds of top quality products or goods, ranging from
+wedding dresses, electronic accessories, motor parts and outdoor
+equipments, etc.Aiming at offering the best service, the fastest
+shipping and the lowest price, BangGood have established trust with
+thousands of  customers from all over the world. To satisfy customers'
+needs is our priority.=20
+
+If you have a question,please try our live chat or send us an email to
+cservice@banggood.com.
+
+Regards,
+Banggood Team
+
+We respect and will protect well your privacy. If you don't want to
+receive our email or received in error, you can easily unsubscribe in
+the link below.
+http://news.banggood.com/u/un.php?par=3D1VAgTap2oi_1722780_235443_1
+
+If you have any questions, Please feel free to contact us by our live
+chat or through the following ways:
+Tel: (+0852)-35903678 (Office Time: 9:00am to 6:00pm GMT+08:00)
+Email: promotion@banggood.com
+Contact Address:
+15/F ,RADIO CITY,505
+HENNESSY RD,
+CAUSEWAY BAY,
+HK
+
+Banggood.com
+http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_47&d=3DT=
+WFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3Njc0Mjc%=
+3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C
+
+Privacy Policy
+http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_48&d=3DT=
+WFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3Njc0Mjg%=
+3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C
+
+2016 Banggood Inc. All rights reserved.
+
+
+$SocialNetwork$
+
+
+----=_---NextPart--=_-i9bKqw4YaE
+Content-Type: text/html; charset=utf-8
+Content-transfer-encoding: quoted-printable
+
+<html><head></head><body><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" width=3D"100%"> <tr>=09<td width=3D"33%"></td> <td> <table cellpaddi=
+ng=3D"0" cellspacing=3D"0" border=3D"0" width=3D"720" align=3D"center" bgco=
+lor=3D"#ffffff" style=3D"font-family: Arial, Helvetica, sans-serif; font-si=
+ze: 12px; color: rgb(102, 102, 102); line-height: 175%;"> <tr> <td align=3D=
+"center" width=3D"784"> <table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" width=3D"720" align=3D"center"> <tr> <td> <a href=3D"http://news.ban=
+ggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_1&d=3DTWFpbF93b21lbjE3M=
+F9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY3OTQ%3D%7CMVZBZ1RhcDJ=
+vaQ%3D%3D%7C" target=3D"_blank"><img alt=3D"Banggood" src=3D"http://img.ban=
+ggood.com/deals/images/mailad57_logo.gif" width=3D"192" style=3D"border: 0p=
+x none; display: block; padding: 5px; font-size: 18px; color: rgb(255, 102,=
+ 0);" /></a></td> <td align=3D"right" style=3D"font-size: 11px; line-height=
+: 120%; color: rgb(153, 153, 153);">Problems viewing this email? <a target=
+=3D"_blank" style=3D"color: rgb(0, 0, 0); text-decoration: none;" href=3D"h=
+ttp://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_2&d=3DTWF=
+pbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY3OTU%3D=
+%7CMVZBZ1RhcDJvaQ%3D%3D%7C">Click here</a>.</td> </tr> </table> <table cell=
+padding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"720" style=3D"backgro=
+und: rgb(255, 255, 255);" align=3D"center"> <tr> <td width=3D"50%" align=3D=
+"center"> <a target=3D"_blank" href=3D"http://news.banggood.com/u/nrd.php?p=
+=3D1VAgTap2oi_235443_1722780_1_3&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk=
+0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY3OTY%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C"><img sr=
+c=3D"http://img.banggood.com/deals/edm/women/images/women109_18.jpg" width=
+=3D"157" height=3D"49" style=3D"margin: 0px auto; border: 0px none; display=
+: block;" /></a></td> <td width=3D"50%" align=3D"center" style=3D"line-heig=
+ht: 300%;"> <a target=3D"_blank" href=3D"http://news.banggood.com/u/nrd.php=
+?p=3D1VAgTap2oi_235443_1722780_1_4&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CN=
+jk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY3OTc%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C"><img =
+src=3D"http://img.banggood.com/deals/edm/women/images/women109_19.jpg" widt=
+h=3D"157" height=3D"49" style=3D"margin: 0px auto; border: 0px none; displa=
+y: block;" /></a></td> </tr> </table> <table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" width=3D"720" style=3D"background: rgb(0, 0, 0);" align=
+=3D"center"> <tr> <td width=3D"20%" align=3D"center" style=3D"line-height: =
+250%;"> <a target=3D"_blank" style=3D"color: rgb(255, 255, 255); text-decor=
+ation: none; padding: 3px; font-size: 12px; font-family: Arial, sans-serif;=
+" href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_=
+1_5&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg=
+3NjY3OTg%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C"><strong>BEAUTY</strong></a></td> <td=
+ width=3D"20%" align=3D"center" style=3D"line-height: 200%;"> <a target=3D"=
+_blank" style=3D"color: rgb(255, 255, 255); text-decoration: none; padding:=
+ 3px; font-size: 12px; font-family: Arial, sans-serif;" href=3D"http://news=
+.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_6&d=3DTWFpbF93b21lb=
+jE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY3OTk%3D%7CMVZBZ1R=
+hcDJvaQ%3D%3D%7C"><strong>JEWELRY</strong></a></td> <td width=3D"20%" align=
+=3D"center" style=3D"line-height: 200%;"> <a target=3D"_blank" style=3D"col=
+or: rgb(255, 255, 255); text-decoration: none; padding: 3px; font-size: 12p=
+x; font-family: Arial, sans-serif;" href=3D"http://news.banggood.com/u/nrd.=
+php?p=3D1VAgTap2oi_235443_1722780_1_7&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%=
+7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDA%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C"><s=
+trong>WATCH</strong></a></td> <td width=3D"20%" align=3D"center" style=3D"l=
+ine-height: 200%;"> <a target=3D"_blank" style=3D"color: rgb(255, 255, 255)=
+; text-decoration: none; padding: 3px; font-size: 12px; font-family: Arial,=
+ sans-serif;" href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235=
+443_1722780_1_8&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3=
+NzE%3D%7CNzg3NjY4MDE%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C"><strong>SHOES</strong></=
+a></td> <td width=3D"20%" align=3D"center" style=3D"line-height: 200%;"> <a=
+ target=3D"_blank" style=3D"color: rgb(255, 255, 255); text-decoration: non=
+e; padding: 3px; font-size: 12px; font-family: Arial, sans-serif;" href=3D"=
+http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_9&d=3DTW=
+FpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDI%3=
+D%7CMVZBZ1RhcDJvaQ%3D%3D%7C"><strong>BAGS</strong></a></td> </tr> </table> =
+</td> </tr> <tr> <td valign=3D"top"><a href=3D"http://news.banggood.com/u/n=
+rd.php?p=3D1VAgTap2oi_235443_1722780_1_10&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D=
+%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDM%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C=
+" target=3D"_blank"><img src=3D"http://img.banggood.com/deals/edm/women/ima=
+ges/women170_00.jpg" border=3D"0" alt=3D"Men's Spring Casual Style" /></a><=
+/td> </tr> <tr> <td><table width=3D"720" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0"> <tr> <td width=3D"199"><a href=3D"http://news.banggood.com/=
+u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_11&d=3DTWFpbF93b21lbjE3MF9lbWFpbA=
+%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDQ%3D%7CMVZBZ1RhcDJvaQ%3D%3D=
+%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/deals/edm/women/=
+images/women170_11.jpg" style=3D"vertical-align: bottom; border: 0px; displ=
+ay: block;" alt=3D"Electric Body Facial Epilator Hair Remover" /></a></td> =
+<td width=3D"229"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap=
+2oi_235443_1722780_1_12&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2=
+OGQ1YWQ3NzE%3D%7CNzg3NjY4MDU%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank=
+"><img src=3D"http://img.banggood.com/deals/edm/women/images/women170_12.jp=
+g" style=3D"vertical-align: bottom; border: 0px; display: block;" alt=3D"Gl=
+ow in Dark Luminous Finger Ring" /></a></td> <td width=3D"293"><a href=3D"h=
+ttp://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_13&d=3DTW=
+FpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDY%3=
+D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.bangg=
+ood.com/deals/edm/women/images/women170_13.jpg" style=3D"vertical-align: bo=
+ttom; border: 0px; display: block;" alt=3D"Sexy Brief Solid Button Irregula=
+r Dress" /></a></td> </tr> </table></td> </tr> <tr> <td height=3D"10" bgcol=
+or=3D"#FFFFFF"></td> </tr> <tr> <td><table width=3D"720" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0"> <tr> <td width=3D"301"><a href=3D"http://ne=
+ws.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_14&d=3DTWFpbF93b2=
+1lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDc%3D%7CMVZB=
+Z1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/=
+deals/edm/women/images/women170_21.jpg" style=3D"vertical-align: bottom; bo=
+rder: 0px; display: block;" alt=3D"Sexy PU Waist Training Steampunk Corset =
+Dress" /></a></td> <td width=3D"226"><a href=3D"http://news.banggood.com/u/=
+nrd.php?p=3D1VAgTap2oi_235443_1722780_1_15&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3=
+D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MDg%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7=
+C" target=3D"_blank"><img src=3D"http://img.banggood.com/deals/edm/women/im=
+ages/women170_22.jpg" style=3D"vertical-align: bottom; border: 0px; display=
+: block;" alt=3D"Shine Patchwork Bags" /></a></td> <td width=3D"193"><a hre=
+f=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_16&=
+d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY=
+4MDk%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img=
+.banggood.com/deals/edm/women/images/women170_23.jpg" style=3D"vertical-ali=
+gn: bottom; border: 0px; display: block;" alt=3D"Dad Letter Pendant For Nec=
+klace" /></a></td> </tr> </table></td> </tr> <tr> <td height=3D"10" bgcolor=
+=3D"#FFFFFF"></td> </tr> <tr> <td><table width=3D"720" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0"> <tr> <td width=3D"336"><a href=3D"http://news=
+.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_17&d=3DTWFpbF93b21l=
+bjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTA%3D%7CMVZBZ1=
+RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/de=
+als/edm/women/images/women170_31.jpg" style=3D"vertical-align: bottom; bord=
+er: 0px; display: block;" alt=3D"3D EMOJI Pringting Harajuku Socks" /></a><=
+/td> <td width=3D"93"><img src=3D"http://img.banggood.com/deals/edm/women/i=
+mages/women170_32.jpg" style=3D"vertical-align: bottom; border: 0px; displa=
+y: block;" alt=3D"One Last Biggest Sale in 2015" /></td> <td width=3D"291">=
+<a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780=
+_1_18&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CN=
+zg3NjY4MTE%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http=
+://img.banggood.com/deals/edm/women/images/women170_33.jpg" style=3D"vertic=
+al-align: bottom; border: 0px; display: block;" alt=3D"Handmade Knitted Wom=
+en Platform Casual Sports Shoes" /></a></td> </tr> </table></td> </tr> <tr>=
+ <td height=3D"10" bgcolor=3D"#FFFFFF"></td> </tr> <tr> <td><table width=3D=
+"720" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tr> <td width=3D"1=
+73"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_172=
+2780_1_19&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D=
+%7CNzg3NjY4MTI%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"=
+http://img.banggood.com/deals/edm/women/images/women170_41.jpg" style=3D"ve=
+rtical-align: bottom; border: 0px; display: block;" alt=3D"Clearance Women =
+Winter Snow Boots" /></a></td> <td width=3D"221"><a href=3D"http://news.ban=
+ggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_20&d=3DTWFpbF93b21lbjE3=
+MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTM%3D%7CMVZBZ1RhcD=
+JvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/deals/=
+edm/women/images/women170_42.jpg" style=3D"vertical-align: bottom; border: =
+0px; display: block;" alt=3D"Retro High Waist A Line Mini Skirt" /></a></td=
+> <td width=3D"326"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgT=
+ap2oi_235443_1722780_1_21&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5Nj=
+I2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTQ%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_bla=
+nk"><img src=3D"http://img.banggood.com/deals/edm/women/images/women170_43.=
+jpg" style=3D"vertical-align: bottom; border: 0px; display: block;" alt=3D"=
+Slim Sexy Top" /></a></td> </tr> </table></td> </tr> <tr> <td height=3D"10"=
+ bgcolor=3D"#FFFFFF"></td> </tr> <tr> <td><table width=3D"720" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0"> <tr> <td width=3D"234"><a href=3D"htt=
+p://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_22&d=3DTWFp=
+bF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTU%3D%=
+7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggoo=
+d.com/deals/edm/women/images/women170_51.jpg" style=3D"vertical-align: bott=
+om; border: 0px; display: block;" alt=3D"Womens Cowhide Diamond Belt" /></a=
+></td> <td width=3D"250"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D=
+1VAgTap2oi_235443_1722780_1_23&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0Y=
+Tk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTY%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D=
+"_blank"><img src=3D"http://img.banggood.com/deals/edm/women/images/women17=
+0_52.jpg" style=3D"vertical-align: bottom; border: 0px; display: block;" al=
+t=3D"Temperature Color-chaging Nail Lacquer" /></a></td> <td width=3D"236">=
+<a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780=
+_1_24&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CN=
+zg3NjY4MTc%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http=
+://img.banggood.com/deals/edm/women/images/women170_53.jpg" style=3D"vertic=
+al-align: bottom; border: 0px; display: block;" alt=3D"Drawstring Long Wall=
+et" /></a></td> </tr> </table></td> </tr> <tr> <td height=3D"10" bgcolor=3D=
+"#FFFFFF"></td> </tr> <tr> <td><table width=3D"720" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0"> <tr> <td width=3D"235"><a href=3D"http://news.ba=
+nggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_25&d=3DTWFpbF93b21lbjE=
+3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTg%3D%7CMVZBZ1Rhc=
+DJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/deals=
+/edm/women/images/women170_61.jpg" style=3D"vertical-align: bottom; border:=
+ 0px; display: block;" alt=3D"ChArmkpR Thick Loose Mens Cargo Pants" /></a>=
+</td> <td width=3D"249"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1=
+VAgTap2oi_235443_1722780_1_26&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YT=
+k5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MTk%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"=
+_blank"><img src=3D"http://img.banggood.com/deals/edm/women/images/women170=
+_62.jpg" style=3D"vertical-align: bottom; border: 0px; display: block;" alt=
+=3D"ZEFER Multifunction Business Shoulder Bag" /></a></td> <td width=3D"236=
+"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_17227=
+80_1_27&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7=
+CNzg3NjY4MjA%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"ht=
+tp://img.banggood.com/deals/edm/women/images/women170_63.jpg" style=3D"vert=
+ical-align: bottom; border: 0px; display: block;" alt=3D"CHENXI CX-004A Gol=
+d Watch" /></a></td> </tr> </table></td> </tr> <tr> <td height=3D"10" bgcol=
+or=3D"#FFFFFF"></td> </tr> <tr> <td><table width=3D"720" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0"> <tr> <td width=3D"235"><a href=3D"http://ne=
+ws.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_28&d=3DTWFpbF93b2=
+1lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MjE%3D%7CMVZB=
+Z1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/=
+deals/edm/women/images/women170_71.jpg" style=3D"vertical-align: bottom; bo=
+rder: 0px; display: block;" alt=3D"16 Sizes DIY Crochet Hook Knitting Needl=
+e Tool Kits" /></a></td> <td width=3D"249"><a href=3D"http://news.banggood.=
+com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_29&d=3DTWFpbF93b21lbjE3MF9lbW=
+FpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MjI%3D%7CMVZBZ1RhcDJvaQ%3=
+D%3D%7C" target=3D"_blank"><img src=3D"http://img.banggood.com/deals/edm/wo=
+men/images/women170_72.jpg" style=3D"vertical-align: bottom; border: 0px; d=
+isplay: block;" alt=3D"Creative Baby Spill-Proof Feeding Bowl Toy" /></a></=
+td> <td width=3D"236"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VA=
+gTap2oi_235443_1722780_1_30&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5=
+NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MjM%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_b=
+lank"><img src=3D"http://img.banggood.com/deals/edm/women/images/women170_7=
+3.jpg" style=3D"vertical-align: bottom; border: 0px; display: block;" alt=
+=3D"Clockwork Tortoise Floating Kids Bathtub Toy" /></a></td> </tr> </table=
+></td> </tr> <tr> <td height=3D"10" bgcolor=3D"#FFFFFF"></td> </tr> <tr> <t=
+d colspan=3D"2"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2o=
+i_235443_1722780_1_31&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OG=
+Q1YWQ3NzE%3D%7CNzg3NjY4MjQ%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank">=
+<img src=3D"http://img.banggood.com/deals/edm/women/images/women170_01.jpg"=
+ style=3D"border: 0px none; display: block;" alt=3D"collection" /></a></td>=
+ </tr> <tr> <td height=3D"10" bgcolor=3D"#FFFFFF"></td> </tr> <tr> <td cols=
+pan=3D"2"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_2354=
+43_1722780_1_32&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3=
+NzE%3D%7CNzg3NjY4MjU%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img s=
+rc=3D"http://img.banggood.com/deals/edm/women/images/women170_02.gif" style=
+=3D"border: 0px none; display: block;" alt=3D"Nail" width=3D"720" /></a></t=
+d> </tr> <tr> <td height=3D"10" bgcolor=3D"#FFFFFF"></td> </tr> <tr> <td co=
+lspan=3D"2"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_23=
+5443_1722780_1_33&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YW=
+Q3NzE%3D%7CNzg3NjY4MjY%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"><img=
+ src=3D"http://img.banggood.com/deals/edm/women/images/women170_03.jpg" sty=
+le=3D"border: 0px none; display: block;" alt=3D"collection" width=3D"720" /=
+></a></td> </tr> <tr> <td height=3D"10" bgcolor=3D"#FFFFFF"></td> </tr> <tr=
+> <td colspan=3D"2"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgT=
+ap2oi_235443_1722780_1_34&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5Nj=
+I2OGQ1YWQ3NzE%3D%7CNzg3NjY4Mjc%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_bla=
+nk"><img src=3D"http://img.banggood.com/deals/edm/women/images/women170_04.=
+jpg" style=3D"border: 0px none; display: block;" alt=3D"collection" width=
+=3D"720" /></a></td> </tr> <tr> <td height=3D"10" bgcolor=3D"#FFFFFF"></td>=
+ </tr> <tr> <td background=3D"http://img.banggood.com/deals/edm/women/image=
+s/women101_10.jpg" width=3D"784" height=3D"77" colspan=3D"3"> <table width=
+=3D"352" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">=
+ <tr> <td width=3D"36"><a href=3D"http://news.banggood.com/u/nrd.php?p=3D1V=
+AgTap2oi_235443_1722780_1_35&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk=
+5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4Mjg%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_=
+blank"> <img style=3D"border: 0px none; display: block;" src=3D"http://img.=
+banggood.com/deals/edm/women/images/women101_11.jpg" /></a></td> <td width=
+=3D"18"></td> <td width=3D"36"><a href=3D"http://news.banggood.com/u/nrd.ph=
+p?p=3D1VAgTap2oi_235443_1722780_1_36&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7=
+CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4Mjk%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" tar=
+get=3D"_blank"> <img style=3D"border: 0px none; display: block;" src=3D"htt=
+p://img.banggood.com/deals/edm/women/images/women101_12.jpg" /></a></td> <t=
+d width=3D"18"></td> <td width=3D"36"><a href=3D"http://news.banggood.com/u=
+/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_37&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%=
+3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MzA%3D%7CMVZBZ1RhcDJvaQ%3D%3D%=
+7C" target=3D"_blank"> <img style=3D"border: 0px none; display: block;" src=
+=3D"http://img.banggood.com/deals/edm/women/images/women101_13.jpg" /></a><=
+/td> <td width=3D"18"></td> <td width=3D"36"><a href=3D"http://news.banggoo=
+d.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_38&d=3DTWFpbF93b21lbjE3MF9l=
+bWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MzE%3D%7CMVZBZ1RhcDJvaQ=
+%3D%3D%7C" target=3D"_blank"> <img style=3D"border: 0px none; display: bloc=
+k;" src=3D"http://img.banggood.com/deals/edm/women/images/women101_14.jpg" =
+/></a></td> <td width=3D"18"></td> <td width=3D"36"><a href=3D"http://news.=
+banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_39&d=3DTWFpbF93b21lb=
+jE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MzI%3D%7CMVZBZ1R=
+hcDJvaQ%3D%3D%7C" target=3D"_blank"> <img style=3D"border: 0px none; displa=
+y: block;" src=3D"http://img.banggood.com/deals/edm/women/images/women101_1=
+5.jpg" /></a></td> <td width=3D"18"></td> <td width=3D"36"><a href=3D"http:=
+//news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_40&d=3DTWFpbF=
+93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MzM%3D%7C=
+MVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"> <img style=3D"border: 0px none;=
+ display: block;" src=3D"http://img.banggood.com/deals/edm/women/images/wom=
+en101_16.jpg" /></a></td> <td width=3D"18"></td> <td width=3D"36"><a href=
+=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_41&d=
+=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4=
+MzQ%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C" target=3D"_blank"> <img style=3D"border: =
+0px none; display: block;" src=3D"http://img.banggood.com/deals/edm/women/i=
+mages/women101_17.jpg" /></a></td> </tr> </table> </td> </tr> <tr> <td heig=
+ht=3D"42" colspan=3D"3" style=3D"text-align: center; font-family: Arial, sa=
+ns-serif; border: 0px none; font-size: 11px; color: rgb(153, 153, 153);"><p=
+ style=3D"padding-top: 16px; width: 600px; margin: 0px auto;">This commerci=
+al email was sent to you by Banggood Company.<br /><br /> You received this=
+ email because you registered, accepted an invitation, or have shopped from=
+ our company. And this is to let you be informed of our New Arrivals and di=
+scounts. We respect and will protect well your privacy. If you don't want t=
+o receive our email or received in error, you can easily <a style=3D"color:=
+ rgb(0, 0, 0); text-decoration: none;" href=3D"http://news.banggood.com/u/n=
+rd.php?p=3D1VAgTap2oi_235443_1722780_1_42&d=3DdG9vcm9wJTQwdG9vcm9wLmZy%7CRn=
+JlbmNo%7C%7C%7C%7CTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3Nz=
+E%3D%7CNzg3NjY4MzU%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C">unsubscribe</a> here.<br /=
+><br /> If you have any questions, Please feel free to contact us by <a sty=
+le=3D"color: rgb(0, 0, 0); text-decoration: none;" href=3D"http://news.bang=
+good.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_43&d=3DTWFpbF93b21lbjE3M=
+F9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4MzY%3D%7CMVZBZ1RhcDJ=
+vaQ%3D%3D%7C">our live chat</a> or through the following ways:<br /> <b>Tel=
+</b>: (+0852)-35903678 (Office Time: 9:00am to 6:00pm GMT+08:00)<br /> <b>E=
+mail:</b> <a style=3D"color: rgb(0, 0, 0); text-decoration: none;" href=3D"=
+mailto:promotion@banggood.com">promotion@banggood.com</a><br /><b>Contact A=
+ddress:</b><br />15/F ,RADIO CITY,505<br /> HENNESSY RD,<br />CAUSEWAY BAY,=
+<br />HK<br /><br /></p></td> </tr> <tr> <td align=3D"center" colspan=3D"3"=
+><a style=3D"color: rgb(0, 0, 0); text-decoration: none;" href=3D"http://ne=
+ws.banggood.com/u/nrd.php?p=3D1VAgTap2oi_235443_1722780_1_44&d=3DTWFpbF93b2=
+1lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ1YWQ3NzE%3D%7CNzg3NjY4Mzc%3D%7CMVZB=
+Z1RhcDJvaQ%3D%3D%7C">Banggood</a> | <a style=3D"color: rgb(0, 0, 0); text-d=
+ecoration: none;" href=3D"http://news.banggood.com/u/nrd.php?p=3D1VAgTap2oi=
+_235443_1722780_1_45&d=3DTWFpbF93b21lbjE3MF9lbWFpbA%3D%3D%7CNjk0YTk5NjI2OGQ=
+1YWQ3NzE%3D%7CNzg3NjY4Mzg%3D%7CMVZBZ1RhcDJvaQ%3D%3D%7C">Privacy Policy </a>=
+| =C2=A9 2016 Banggood Inc. All rights reserved.</td> </tr> </table> </td> =
+<td width=3D"33%"></td> </tr> </table>
+<img src=3D"http://news.banggood.com/img/1VAgTap2oi_143476290_1722780_23544=
+3.gif" height=3D2 width=3D2 border=3D0></body></html>
+----=_---NextPart--=_-i9bKqw4YaE--
