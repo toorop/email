@@ -1,7 +1,7 @@
 package email
 
 import (
-	"log"
+	"io/ioutil"
 	"os"
 	"testing"
 
@@ -9,97 +9,86 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestNew New
-/*func TestNew(t *testing.T) {
-	t.Error("il y a une erreur")
-}*/
-
-func getMailReader(file string) *os.File {
-	fd, err := os.Open("samples/" + file)
+func newMessage(path string) Email {
+	message, err := NewFromFile(path)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	return fd
-}
-
-func TestReadMessage(t *testing.T) {
-	reader := getMailReader("testgetbody.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-}
-
-func TestRaw(t *testing.T) {
-	reader := getMailReader("raw.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	raw, err := email.Raw()
-	require.NoError(t, err)
-	require.Equal(t, "rawmessage\n", string(raw))
+	return message
 
 }
 
 //
+func TestNewFromFile(t *testing.T) {
+	message, err := NewFromFile("samples/testgetbody.txt")
+	require.NoError(t, err)
+	defer message.Close()
+}
+
+func TestNewFromByte(t *testing.T) {
+	fd, err := os.Open("samples/testgetbody.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer fd.Close()
+	mBytes, err := ioutil.ReadAll(fd)
+	if err != nil {
+		panic(err)
+	}
+	message, err := NewFromByte(mBytes)
+	require.NoError(t, err)
+	defer message.Close()
+}
+
+func TestRaw(t *testing.T) {
+	message := newMessage("samples/raw.txt")
+	defer message.Close()
+	raw, err := message.Raw()
+	require.NoError(t, err)
+	require.Equal(t, "rawmessage\n", string(raw))
+}
+
+//
 func TestGetRawHeaders(t *testing.T) {
-	reader := getMailReader("rawheaders.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	raw, err := email.GetRawheaders()
+	message := newMessage("samples/rawheaders.txt")
+	defer message.Close()
+	raw, err := message.GetRawHeaders()
 	require.NoError(t, err)
 	require.Equal(t, "header\nheader", string(raw))
-
 }
 
 func TestGetHeaders(t *testing.T) {
-	reader := getMailReader("test-headers.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	hdr, err := email.GetHeaders("x-test-multi")
+	message := newMessage("samples/test-headers.txt")
+	defer message.Close()
+	hdr, err := message.GetHeaders("x-test-multi")
 	require.NoError(t, err)
 	assert.Equal(t, []string{"a", "a"}, hdr)
-	h, err := email.GetHeader("x-test-multi")
+	h, err := message.GetHeader("x-test-multi")
 	require.NoError(t, err)
 	assert.Equal(t, h, "a")
 }
 
 // TestGetContentType
 func TestGetContentType(t *testing.T) {
-	reader := getMailReader("multipart-text-html.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	contentType, _, err := email.GetContentType()
+	message := newMessage("samples/multipart-text-html.txt")
+	defer message.Close()
+	contentType, _, err := message.GetContentType()
 	assert.NoError(t, err)
 	assert.Equal(t, "multipart/related", contentType)
 }
 
 func TestGetPayloads(t *testing.T) {
-	reader := getMailReader("base64.eml")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	err := email.GetPayloads()
+	message := newMessage("samples/base64.eml")
+	defer message.Close()
+	err := message.GetPayloads()
 	require.NoError(t, err)
 }
 
 // TestGetBody test GetBody
 func TestGetRawBody(t *testing.T) {
-	var err error
-	reader := getMailReader("testgetbody.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	body, err := email.GetRawBody()
+	message := newMessage("samples/testgetbody.txt")
+	defer message.Close()
+	body, err := message.GetRawBody()
 	require.NoError(t, err)
 	bodyStr := string(body[:len(body)-1])
 	assert.Equal(t, "The Best Play!", bodyStr)
@@ -113,14 +102,11 @@ func TestGetDomains(t *testing.T) {
 		"bacori1.fr":     8,
 		"majuscul1.fr":   1,
 	}
-	reader := getMailReader("html.txt")
-	defer reader.Close()
-	email := New()
-	defer email.Close()
-	require.NoError(t, email.ReadMessage(reader))
-	domains, err := email.GetDomains()
+	message := newMessage("samples/html.txt")
+	defer message.Close()
+
+	domains, err := message.GetDomains()
 	require.NoError(t, err)
-	//log.Println(domains)
 	for d, o := range expectedDomains {
 		_, found := domains[d]
 		require.True(t, found)

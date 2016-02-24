@@ -16,60 +16,76 @@ import (
 	"github.com/mvdan/xurls"
 )
 
+// TempDir is the working dir (where we save email as file)
+var TempDir string
+
 // Email represents an email
-type email struct {
+type Email struct {
 	locker           *sync.Mutex
 	file             *os.File
-	TempDir          string
 	Header           Header
 	flagHeaderParsed bool
 	contentType      string
 }
 
-// New returns a new email
-func New(tempdir ...string) *email {
-	e := new(email)
-	e.locker = new(sync.Mutex)
-	if len(tempdir) != 0 {
-		e.TempDir = tempdir[0]
+// init
+func init() {
+	var err error
+	TempDir, err = ioutil.TempDir("", "emailpkg")
+	if err != nil {
+		panic(err)
 	}
-	return e
 }
 
-// ReadMessage read new email from io.Reader
-func (m *email) ReadMessage(reader io.Reader) (err error) {
-	if m.TempDir == "" {
-		m.TempDir, err = ioutil.TempDir("", "emailpkg")
-		if err != nil {
-			return
-		}
+// NewFromFile returns email from file
+func NewFromFile(path string) (m Email, err error) {
+	m = Email{
+		locker: new(sync.Mutex),
 	}
-	if m.file, err = ioutil.TempFile(m.TempDir, ""); err != nil {
+	fd, err := os.Open(path)
+	if err != nil {
 		return
 	}
-	_, err = io.Copy(m.file, reader)
+	if m.file, err = ioutil.TempFile(TempDir, ""); err != nil {
+		return
+	}
+	_, err = io.Copy(m.file, fd)
 	m.file.Seek(0, 0)
 	return
 }
 
+// NewFromByte returns email from []byte
+func NewFromByte(messageBytes []byte) (m Email, err error) {
+	r := bytes.NewReader(messageBytes)
+	if m.file, err = ioutil.TempFile(TempDir, ""); err != nil {
+		return
+	}
+	_, err = io.Copy(m.file, r)
+	m.file.Seek(0, 0)
+	return
+}
+
+// NewFromString retuns email from a string
+func NewFromString(messageStr string) (m Email, err error) {
+	return NewFromByte([]byte(messageStr))
+}
+
 // Close is an explicit finalizer
 // it close Email.reader and remove temporary files
-func (m *email) Close() error {
+func (m *Email) Close() error {
 	// TODO don't return on return
 	if err := m.file.Close(); err != nil {
 		return err
 	}
-
 	if err := os.Remove(m.file.Name()); err != nil {
 		return err
 	}
-
 	// others stuff
 	return nil
 }
 
 // Raw return email as raw []byte
-func (m *email) Raw() (raw []byte, err error) {
+func (m *Email) Raw() (raw []byte, err error) {
 	m.locker.Lock()
 	defer m.locker.Unlock()
 	if _, err = m.file.Seek(0, 0); err != nil {
@@ -80,7 +96,7 @@ func (m *email) Raw() (raw []byte, err error) {
 }
 
 // GetRawHeaders returns headers as []byte
-func (m *email) GetRawheaders() ([]byte, error) {
+func (m *Email) GetRawHeaders() ([]byte, error) {
 	var err error
 	var prev byte
 	var headers []byte
@@ -104,7 +120,7 @@ func (m *email) GetRawheaders() ([]byte, error) {
 }
 
 // parseHeader parse headers
-func (m *email) parseHeader() (err error) {
+func (m *Email) parseHeader() (err error) {
 	m.locker.Lock()
 	defer m.locker.Unlock()
 
@@ -123,7 +139,7 @@ func (m *email) parseHeader() (err error) {
 }
 
 // GetHeaders returns valueS for header key key
-func (m *email) GetHeaders(key string) (headers []string, err error) {
+func (m *Email) GetHeaders(key string) (headers []string, err error) {
 	// if not parsed
 	if !m.flagHeaderParsed {
 		if err = m.parseHeader(); err != nil {
@@ -135,7 +151,7 @@ func (m *email) GetHeaders(key string) (headers []string, err error) {
 }
 
 // GetHeader returns first value for header key key
-func (m *email) GetHeader(key string) (string, error) {
+func (m *Email) GetHeader(key string) (string, error) {
 	var err error
 	var hs []string
 	if hs, err = m.GetHeaders(key); err != nil {
@@ -148,7 +164,7 @@ func (m *email) GetHeader(key string) (string, error) {
 }
 
 // GetRawBody returns body as []byte
-func (m *email) GetRawBody() (body []byte, err error) {
+func (m *Email) GetRawBody() (body []byte, err error) {
 	m.locker.Lock()
 	defer m.locker.Unlock()
 	if _, err = m.file.Seek(0, 0); err != nil {
@@ -172,23 +188,16 @@ func (m *email) GetRawBody() (body []byte, err error) {
 }
 
 // GetContentType returns content-type of the message
-func (m *email) GetContentType() (contentType string, params map[string]string, err error) {
-	/*if m.contentType != "" {
-		return m.contentType, nil
-	}*/
+func (m *Email) GetContentType() (contentType string, params map[string]string, err error) {
 	hdrCt, err := m.GetHeader("Content-Type")
 	if err != nil {
 		return
 	}
 	return mime.ParseMediaType(hdrCt)
-	/*if err != nil {
-		m.contentType = contentType
-	}
-	return*/
 }
 
 // GetPayloads returns
-func (m *email) GetPayloads() error {
+func (m *Email) GetPayloads() error {
 	contentType, params, err := m.GetContentType()
 	if err != nil {
 		return err
@@ -222,7 +231,7 @@ func (m *email) GetPayloads() error {
 }
 
 // GetDomains returns un slice of domains names found in email src
-func (m *email) GetDomains() (domains map[string]int, err error) {
+func (m *Email) GetDomains() (domains map[string]int, err error) {
 	domains = make(map[string]int)
 	var parts []string
 	raw, err := m.Raw()
