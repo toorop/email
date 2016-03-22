@@ -122,11 +122,14 @@ func (m *Email) GetRawHeaders() ([]byte, error) {
 		if _, err = m.file.Read(buf); err != nil {
 			return []byte{}, err
 		}
+		println(prev, buf[0], lfcrSeen)
 		if prev == 13 && buf[0] == 10 {
 			if lfcrSeen {
 				break
 			}
 			lfcrSeen = true
+		} else if prev != 10 {
+			lfcrSeen = false
 		}
 		headers = append(headers, buf[0])
 		prev = buf[0]
