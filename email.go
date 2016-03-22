@@ -21,7 +21,7 @@ const (
 )
 
 // TempDir is the working dir (where we save email as file)
-var TempDir string
+//var TempDir string
 
 // Email represents an email
 type Email struct {
@@ -35,7 +35,7 @@ type Email struct {
 // init
 func init() {
 	var err error
-	TempDir, err = ioutil.TempDir("", "emailpkg")
+	//TempDir, err = ioutil.TempDir("", "emailpkg")
 	if err != nil {
 		panic(err)
 	}
@@ -53,7 +53,7 @@ func NewFromFile(path string) (m Email, err error) {
 		return
 	}
 	defer fd.Close()
-	if m.file, err = ioutil.TempFile(TempDir, ""); err != nil {
+	if m.file, err = ioutil.TempFile("", ""); err != nil {
 		return
 	}
 	r := lf2crlf(fd)
@@ -68,7 +68,7 @@ func NewFromByte(messageBytes []byte) (m Email, err error) {
 		locker: new(sync.Mutex),
 	}
 	r := lf2crlf(bytes.NewReader(messageBytes))
-	if m.file, err = ioutil.TempFile(TempDir, ""); err != nil {
+	if m.file, err = ioutil.TempFile("", ""); err != nil {
 		return
 	}
 	_, err = io.Copy(m.file, &r)
