@@ -16,6 +16,10 @@ import (
 	"github.com/mvdan/xurls"
 )
 
+const (
+	crlf = "\r\n"
+)
+
 // TempDir is the working dir (where we save email as file)
 var TempDir string
 
@@ -37,6 +41,8 @@ func init() {
 	}
 }
 
+// NewFromReader TODO
+
 // NewFromFile returns email from file
 func NewFromFile(path string) (m Email, err error) {
 	m = Email{
@@ -46,21 +52,26 @@ func NewFromFile(path string) (m Email, err error) {
 	if err != nil {
 		return
 	}
+	defer fd.Close()
 	if m.file, err = ioutil.TempFile(TempDir, ""); err != nil {
 		return
 	}
-	_, err = io.Copy(m.file, fd)
+	r := lf2crlf(fd)
+	_, err = io.Copy(m.file, &r)
 	m.file.Seek(0, 0)
 	return
 }
 
 // NewFromByte returns email from []byte
 func NewFromByte(messageBytes []byte) (m Email, err error) {
-	r := bytes.NewReader(messageBytes)
+	m = Email{
+		locker: new(sync.Mutex),
+	}
+	r := lf2crlf(bytes.NewReader(messageBytes))
 	if m.file, err = ioutil.TempFile(TempDir, ""); err != nil {
 		return
 	}
-	_, err = io.Copy(m.file, r)
+	_, err = io.Copy(m.file, &r)
 	m.file.Seek(0, 0)
 	return
 }
@@ -99,6 +110,7 @@ func (m *Email) Raw() (raw []byte, err error) {
 func (m *Email) GetRawHeaders() ([]byte, error) {
 	var err error
 	var prev byte
+	var lfcrSeen bool
 	var headers []byte
 	m.locker.Lock()
 	defer m.locker.Unlock()
@@ -110,8 +122,11 @@ func (m *Email) GetRawHeaders() ([]byte, error) {
 		if _, err = m.file.Read(buf); err != nil {
 			return []byte{}, err
 		}
-		if prev == 10 && buf[0] == 10 {
-			break
+		if prev == 13 && buf[0] == 10 {
+			if lfcrSeen {
+				break
+			}
+			lfcrSeen = true
 		}
 		headers = append(headers, buf[0])
 		prev = buf[0]
@@ -170,21 +185,11 @@ func (m *Email) GetRawBody() (body []byte, err error) {
 	if _, err = m.file.Seek(0, 0); err != nil {
 		return body, err
 	}
-	var prev byte
-	buf := make([]byte, 1)
-
-	// skip headers
-	for {
-		if _, err = m.file.Read(buf); err != nil {
-			return body, err
-		}
-		if prev == 10 && buf[0] == 10 {
-			break
-		}
-		prev = buf[0]
+	tp := textproto.NewReader(bufio.NewReader(m.file))
+	if _, err = tp.ReadMIMEHeader(); err != nil {
+		return
 	}
-	body, err = ioutil.ReadAll(m.file)
-	return
+	return ioutil.ReadAll(tp.R)
 }
 
 // GetContentType returns content-type of the message
@@ -196,38 +201,65 @@ func (m *Email) GetContentType() (contentType string, params map[string]string, 
 	return mime.ParseMediaType(hdrCt)
 }
 
-// GetPayloads returns
-func (m *Email) GetPayloads() error {
+// IsMultipart checks if mail is multipart
+func (m *Email) IsMultipart() (bool, error) {
+	contentType, _, err := m.GetContentType()
+	if err != nil {
+		return false, err
+	}
+	return strings.HasPrefix(contentType, "multipart"), nil
+}
+
+// GetParts returns messages parts
+func (m *Email) GetParts() (parts []multipart.Part, err error) {
+	var body []byte
+	body, err = m.GetRawBody()
+	if err != nil {
+		return parts, err
+	}
+
 	contentType, params, err := m.GetContentType()
 	if err != nil {
-		return err
+		return
 	}
-	println(contentType)
-	for k, v := range params {
-		println(k, v)
-	}
+
 	if strings.HasPrefix(contentType, "multipart") {
-		body, err := m.GetRawBody()
-		if err != nil {
-			return err
-		}
 		mr := multipart.NewReader(bytes.NewReader(body), params["boundary"])
 		for {
 			part, err := mr.NextPart()
 			if err == io.EOF {
+				err = nil
 				break
 			}
 			if err != nil {
-				return err
+				return parts, err
 			}
-			payload, err := ioutil.ReadAll(part)
-			if err != nil {
-				return err
-			}
-			println(string(payload))
+			parts = append(parts, *part)
 		}
+	} else {
+		// fake multipart to have "part" type
+		var hdr, ct, te string
+		if hdr, err = m.GetHeader("Content-Type"); err != nil {
+			return parts, err
+		}
+		ct = hdr
+		if hdr, err = m.GetHeader("Content-transfer-encoding"); err != nil {
+			return parts, err
+		}
+		te = hdr
+
+		msgStr := "Content-Type: multipart/mixed; boundary=foo\r\n\r\n"
+		msgStr += "--foo\r\n"
+		msgStr += "Content-Type: " + ct + "\r\n"
+		msgStr += "Content-transfer-encoding: " + te + "\r\n\r\n"
+		msgStr += string(body) + "\r\n--foo--"
+		msg, err := NewFromString(msgStr)
+		if err != nil {
+			return parts, err
+		}
+		return msg.GetParts()
 	}
-	return nil
+	return
 }
 
 // GetDomains returns un slice of domains names found in email src
@@ -273,4 +305,25 @@ func (m *Email) GetDomains() (domains map[string]int, err error) {
 		}
 	}
 	return
+}
+
+// replace LF by CRLF
+func lf2crlf(in io.Reader) (out bytes.Buffer) {
+	var prev byte
+	buf := make([]byte, 1)
+
+	for {
+		_, err := in.Read(buf)
+		// EOF
+		if err != nil {
+			break
+		}
+		if buf[0] == 10 && prev != 13 {
+			out.Write([]byte{13, 10})
+		} else {
+			out.Write(buf)
+		}
+		prev = buf[0]
+	}
+	return out
 }

@@ -45,7 +45,7 @@ func TestRaw(t *testing.T) {
 	defer message.Close()
 	raw, err := message.Raw()
 	require.NoError(t, err)
-	require.Equal(t, "rawmessage\n", string(raw))
+	require.Equal(t, "rawmessage\r\n", string(raw))
 }
 
 //
@@ -54,7 +54,7 @@ func TestGetRawHeaders(t *testing.T) {
 	defer message.Close()
 	raw, err := message.GetRawHeaders()
 	require.NoError(t, err)
-	require.Equal(t, "header\nheader", string(raw))
+	require.Equal(t, "header\r\nheader", string(raw))
 }
 
 func TestGetHeaders(t *testing.T) {
@@ -74,14 +74,24 @@ func TestGetContentType(t *testing.T) {
 	defer message.Close()
 	contentType, _, err := message.GetContentType()
 	assert.NoError(t, err)
-	assert.Equal(t, "multipart/related", contentType)
+	assert.Equal(t, "multipart/alternative", contentType)
 }
 
-func TestGetPayloads(t *testing.T) {
-	message := newMessage("samples/base64.eml")
+func TestGetParts(t *testing.T) {
+	message := newMessage("samples/html_enc.eml")
 	defer message.Close()
-	err := message.GetPayloads()
+	_, err := message.GetParts()
 	require.NoError(t, err)
+	/*for _, part := range parts {
+		//fmt.Println(part)
+
+		for k, v := range part.Header {
+			fmt.Println(fmt.Sprintf("Test %s: %s", k, v[0]))
+		}
+		body, err := ioutil.ReadAll(&part)
+		require.NoError(t, err)
+		fmt.Println(body)
+	}*/
 }
 
 // TestGetBody test GetBody
@@ -90,10 +100,10 @@ func TestGetRawBody(t *testing.T) {
 	defer message.Close()
 	body, err := message.GetRawBody()
 	require.NoError(t, err)
-	bodyStr := string(body[:len(body)-1])
-	assert.Equal(t, "The Best Play!", bodyStr)
+	assert.Equal(t, "The Best Play!", string(body))
 }
 
+// TestGetDomain return domains found in message
 func TestGetDomains(t *testing.T) {
 	var err error
 	expectedDomains := map[string]int{
