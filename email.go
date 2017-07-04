@@ -1,5 +1,8 @@
 package email
 
+// todo
+// - parse on init
+
 import (
 	"bufio"
 	"bytes"
@@ -8,6 +11,7 @@ import (
 	"mime"
 	"mime/multipart"
 	"net"
+	"net/http"
 	"net/textproto"
 	"os"
 	"strings"
@@ -25,20 +29,18 @@ const (
 
 // Email represents an email
 type Email struct {
-	locker           *sync.Mutex
-	file             *os.File
-	Header           Header
-	flagHeaderParsed bool
-	contentType      string
-}
+	locker *sync.Mutex
+	file   *os.File
 
-// init
-func init() {
-	var err error
-	//TempDir, err = ioutil.TempDir("", "emailpkg")
-	if err != nil {
-		panic(err)
-	}
+	//Raw     []byte
+	Headers Header
+
+	// todo slice -> map
+	Parts []multipart.Part
+
+	ContentType       string
+	ContentTypeParams map[string]string
+	IsMultipart       bool
 }
 
 // NewFromReader TODO
@@ -59,6 +61,7 @@ func NewFromFile(path string) (m Email, err error) {
 	r := lf2crlf(fd)
 	_, err = io.Copy(m.file, &r)
 	m.file.Seek(0, 0)
+	err = m.parse()
 	return
 }
 
@@ -73,12 +76,65 @@ func NewFromByte(messageBytes []byte) (m Email, err error) {
 	}
 	_, err = io.Copy(m.file, &r)
 	m.file.Seek(0, 0)
+	err = m.parse()
 	return
 }
 
 // NewFromString retuns email from a string
 func NewFromString(messageStr string) (m Email, err error) {
 	return NewFromByte([]byte(messageStr))
+}
+
+// parse
+func (m *Email) parse() (err error) {
+	// headers
+	if err = m.parseHeader(); err != nil {
+		return
+	}
+
+	// Content-type
+	hdrCt, err := m.GetHeader("Content-Type")
+	if err != nil {
+		return
+	}
+
+	if hdrCt == "" {
+		body, err := m.GetRawBody()
+		if err != nil {
+			return err
+		}
+		hdrCt = http.DetectContentType(body)
+		println(hdrCt)
+	}
+
+	m.ContentType, m.ContentTypeParams, err = mime.ParseMediaType(hdrCt)
+	if err != nil {
+		return
+	}
+	m.IsMultipart = strings.HasPrefix(m.ContentType, "multipart/")
+
+	// parts
+	m.Parts = []multipart.Part{}
+	if m.IsMultipart {
+		var body []byte
+		body, err = m.GetRawBody()
+		if err != nil {
+			return
+		}
+		mr := multipart.NewReader(bytes.NewReader(body), m.ContentTypeParams["boundary"])
+		for {
+			part, err := mr.NextPart()
+			if err == io.EOF {
+				err = nil
+				break
+			}
+			if err != nil {
+				return err
+			}
+			m.Parts = append(m.Parts, *part)
+		}
+	}
+	return
 }
 
 // Close is an explicit finalizer
@@ -95,8 +151,8 @@ func (m *Email) Close() error {
 	return nil
 }
 
-// Raw return email as raw []byte
-func (m *Email) Raw() (raw []byte, err error) {
+// RawFromFile return email as raw []byte
+func (m *Email) RawFromFile() (raw []byte, err error) {
 	m.locker.Lock()
 	defer m.locker.Unlock()
 	if _, err = m.file.Seek(0, 0); err != nil {
@@ -104,6 +160,35 @@ func (m *Email) Raw() (raw []byte, err error) {
 	}
 	raw, err = ioutil.ReadAll(m.file)
 	return
+}
+
+// RawFromStruct return email as raw []byte
+func (m *Email) RawFromStruct() (raw []byte, err error) {
+	m.locker.Lock()
+	defer m.locker.Unlock()
+	if _, err = m.file.Seek(0, 0); err != nil {
+		return
+	}
+	raw, err = ioutil.ReadAll(m.file)
+	return
+}
+
+// parseHeader parse headers
+func (m *Email) parseHeader() (err error) {
+	m.locker.Lock()
+	defer m.locker.Unlock()
+
+	if _, err = m.file.Seek(0, 0); err != nil {
+		return err
+	}
+
+	tp := textproto.NewReader(bufio.NewReader(m.file))
+	hdr, err := tp.ReadMIMEHeader()
+	if err != nil {
+		return err
+	}
+	m.Headers = Header(hdr)
+	return nil
 }
 
 // GetRawHeaders returns headers as []byte
@@ -133,37 +218,12 @@ func (m *Email) GetRawHeaders() ([]byte, error) {
 		headers = append(headers, buf[0])
 		prev = buf[0]
 	}
-	return headers[:len(headers)-1], nil
-}
-
-// parseHeader parse headers
-func (m *Email) parseHeader() (err error) {
-	m.locker.Lock()
-	defer m.locker.Unlock()
-
-	if _, err = m.file.Seek(0, 0); err != nil {
-		return err
-	}
-
-	tp := textproto.NewReader(bufio.NewReader(m.file))
-	hdr, err := tp.ReadMIMEHeader()
-	if err != nil {
-		return err
-	}
-	m.Header = Header(hdr)
-	m.flagHeaderParsed = true
-	return nil
+	return headers[:len(headers)-3], nil
 }
 
 // GetHeaders returns valueS for header key key
 func (m *Email) GetHeaders(key string) (headers []string, err error) {
-	// if not parsed
-	if !m.flagHeaderParsed {
-		if err = m.parseHeader(); err != nil {
-			return headers, err
-		}
-	}
-	headers, _ = m.Header[textproto.CanonicalMIMEHeaderKey(key)]
+	headers, _ = m.Headers[textproto.CanonicalMIMEHeaderKey(key)]
 	return
 }
 
@@ -194,81 +254,33 @@ func (m *Email) GetRawBody() (body []byte, err error) {
 	return ioutil.ReadAll(tp.R)
 }
 
-// GetContentType returns content-type of the message
-func (m *Email) GetContentType() (contentType string, params map[string]string, err error) {
-	hdrCt, err := m.GetHeader("Content-Type")
-	if err != nil {
-		return
-	}
-	return mime.ParseMediaType(hdrCt)
-}
+// replace LF by CRLF
+// todo -> utils.go
+func lf2crlf(in io.Reader) (out bytes.Buffer) {
+	var prev byte
+	buf := make([]byte, 1)
 
-// IsMultipart checks if mail is multipart
-func (m *Email) IsMultipart() (bool, error) {
-	contentType, _, err := m.GetContentType()
-	if err != nil {
-		return false, err
-	}
-	return strings.HasPrefix(contentType, "multipart"), nil
-}
-
-// GetParts returns messages parts
-func (m *Email) GetParts() (parts []multipart.Part, err error) {
-	var body []byte
-	body, err = m.GetRawBody()
-	if err != nil {
-		return parts, err
-	}
-
-	contentType, params, err := m.GetContentType()
-	if err != nil {
-		return
-	}
-
-	if strings.HasPrefix(contentType, "multipart") {
-		mr := multipart.NewReader(bytes.NewReader(body), params["boundary"])
-		for {
-			part, err := mr.NextPart()
-			if err == io.EOF {
-				err = nil
-				break
-			}
-			if err != nil {
-				return parts, err
-			}
-			parts = append(parts, *part)
-		}
-	} else {
-		// fake multipart to have "part" type
-		var hdr, ct, te string
-		if hdr, err = m.GetHeader("Content-Type"); err != nil {
-			return parts, err
-		}
-		ct = hdr
-		if hdr, err = m.GetHeader("Content-transfer-encoding"); err != nil {
-			return parts, err
-		}
-		te = hdr
-
-		msgStr := "Content-Type: multipart/mixed; boundary=foo\r\n\r\n"
-		msgStr += "--foo\r\n"
-		msgStr += "Content-Type: " + ct + "\r\n"
-		msgStr += "Content-transfer-encoding: " + te + "\r\n\r\n"
-		msgStr += string(body) + "\r\n--foo--"
-		msg, err := NewFromString(msgStr)
+	for {
+		_, err := in.Read(buf)
+		// EOF
 		if err != nil {
-			return parts, err
+			break
 		}
-		return msg.GetParts()
+		if buf[0] == 10 && prev != 13 {
+			out.Write([]byte{13, 10})
+		} else {
+			out.Write(buf)
+		}
+		prev = buf[0]
 	}
-	return
+	return out
 }
 
 // GetDomains returns un slice of domains names found in email src
 func (m *Email) GetDomains() (domains map[string]int, err error) {
 	domains = make(map[string]int)
 	var parts []string
-	raw, err := m.Raw()
+	raw, err := m.RawFromFile()
 	if err != nil {
 		return
 	}
@@ -309,23 +321,78 @@ func (m *Email) GetDomains() (domains map[string]int, err error) {
 	return
 }
 
-// replace LF by CRLF
-func lf2crlf(in io.Reader) (out bytes.Buffer) {
-	var prev byte
-	buf := make([]byte, 1)
-
-	for {
-		_, err := in.Read(buf)
-		// EOF
-		if err != nil {
-			break
-		}
-		if buf[0] == 10 && prev != 13 {
-			out.Write([]byte{13, 10})
-		} else {
-			out.Write(buf)
-		}
-		prev = buf[0]
+/*
+// GetContentType returns content-type of the message
+func (m *Email) GetContentType() (contentType string, params map[string]string, err error) {
+	hdrCt, err := m.GetHeader("Content-Type")
+	if err != nil {
+		return
 	}
-	return out
+	return mime.ParseMediaType(hdrCt)
+}*/
+
+/*
+// IsMultipart checks if mail is multipart
+func (m *Email) isMultipart() (bool, error) {
+	contentType, _, err := m.GetContentType()
+	if err != nil {
+		return false, err
+	}
+	return strings.HasPrefix(contentType, "multipart"), nil
 }
+*/
+
+/*
+// GetParts returns messages parts
+func (m *Email) GetParts() (parts []multipart.Part, err error) {
+	var body []byte
+	body, err = m.GetRawBody()
+	if err != nil {
+		return parts, err
+	}
+
+	contentType, params, err := m.GetContentType()
+	if err != nil {
+		return
+	}
+
+	// todo use IsMultipart
+	if strings.HasPrefix(contentType, "multipart") {
+		mr := multipart.NewReader(bytes.NewReader(body), params["boundary"])
+		for {
+			part, err := mr.NextPart()
+			if err == io.EOF {
+				err = nil
+				break
+			}
+			if err != nil {
+				return parts, err
+			}
+			parts = append(parts, *part)
+		}
+	} else {
+		// fake multipart to have "part" type
+		var hdr, ct, te string
+		if hdr, err = m.GetHeader("Content-Type"); err != nil {
+			return parts, err
+		}
+		ct = hdr
+		if hdr, err = m.GetHeader("Content-transfer-encoding"); err != nil {
+			return parts, err
+		}
+		te = hdr
+
+		msgStr := "Content-Type: multipart/mixed; boundary=foo\r\n\r\n"
+		msgStr += "--foo\r\n"
+		msgStr += "Content-Type: " + ct + "\r\n"
+		msgStr += "Content-transfer-encoding: " + te + "\r\n\r\n"
+		msgStr += string(body) + "\r\n--foo--"
+		msg, err := NewFromString(msgStr)
+		if err != nil {
+			return parts, err
+		}
+		return msg.GetParts()
+	}
+	return
+}
+*/

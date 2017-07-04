@@ -5,22 +5,22 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
+/*
 func newMessage(path string) Email {
 	message, err := NewFromFile(path)
 	if err != nil {
 		panic(err)
 	}
 	return message
-
 }
+*/
 
 //
 func TestNewFromFile(t *testing.T) {
-	message, err := NewFromFile("samples/testgetbody.txt")
+	message, err := NewFromFile("samples/multipart-text-html.eml")
 	require.NoError(t, err)
 	defer message.Close()
 }
@@ -39,6 +39,8 @@ func TestNewFromByte(t *testing.T) {
 	require.NoError(t, err)
 	defer message.Close()
 }
+
+/*
 
 func TestRaw(t *testing.T) {
 	message := newMessage("samples/raw.txt")
@@ -82,16 +84,6 @@ func TestGetParts(t *testing.T) {
 	defer message.Close()
 	_, err := message.GetParts()
 	require.NoError(t, err)
-	/*for _, part := range parts {
-		//fmt.Println(part)
-
-		for k, v := range part.Header {
-			fmt.Println(fmt.Sprintf("Test %s: %s", k, v[0]))
-		}
-		body, err := ioutil.ReadAll(&part)
-		require.NoError(t, err)
-		fmt.Println(body)
-	}*/
 }
 
 // TestGetBody test GetBody
@@ -128,3 +120,4 @@ func TestGetDomains(t *testing.T) {
 		assert.Equal(t, o, expectedDomains[d])
 	}
 }
+*/
